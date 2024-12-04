@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from transformers import pipeline
 
+
 app = Flask(__name__)
 summarizer = pipeline("summarization", model="t5-small")
 

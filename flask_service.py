@@ -6,7 +6,7 @@ from time import sleep
 
 app = Flask(__name__)
 
-# Elasticsearch configuration
+#  Elasticsearch configuration
 es = Elasticsearch(
     hosts=["http://34.57.62.89:9200"],  # Elasticsearch external IP
     timeout=30,
