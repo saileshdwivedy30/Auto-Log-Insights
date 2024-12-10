@@ -18,7 +18,7 @@ es = Elasticsearch(
 LOGSTASH_URL = "http://34.72.223.230:5044"  # Logstash external IP
 
 # AI Service configuration
-AI_SERVICE_URL = "http://34.56.187.96:6000/summarize"  # AI service external IP
+AI_SERVICE_URL = "http://34.56.187.96:6000/summarize"  # ai_service external IP
 
 
 @app.route('/upload', methods=['POST'])
@@ -63,14 +63,14 @@ def upload_log():
 @app.route('/analyze/<log_id>', methods=['GET'])
 def analyze_log(log_id):
     """
-    Analyze a specific log by its Elasticsearch _id. Retrieves the log, sends it to the AI service, and returns insights.
+    Analyze a specific log by its Elasticsearch _id. Retrieves the log, sends it to the ai_service, and returns insights.
     """
     try:
         # Retrieve the specific log by its _id
         es_response = es.get(index="logs", id=log_id)
         log_content = es_response["_source"]["message"]
 
-        # Send the log content to the AI service for insights
+        # Send the log content to the ai_service for insights
         ai_response = requests.post(AI_SERVICE_URL, json={"logs": log_content})
         summary = ai_response.json().get("summary", "No summary available.")
 
