@@ -160,6 +160,7 @@ def register():
     # Create index pattern to make the logs of user-index visible on discover page
     create_index_pattern(index_name = f"{username}-logs")
     # Create actual Elastic Search user with restricted privileges
+    create_user(username,password)
     return jsonify({"message": "User registered successfully"}), 201
 
 # Login endpoint
