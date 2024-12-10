@@ -11,7 +11,7 @@ from tasks import background_task
 from tasks import process_log
 import logging
 
-# Configure logging
+# Configure logging for use
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
