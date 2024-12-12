@@ -65,9 +65,10 @@ es = Elasticsearch(
     max_retries=10,
     retry_on_timeout=True
 )
-KIBANA_HOST = "http://localhost:5601" # will change once vm is up
+KIBANA_HOST = "http://34.28.235.62:5601" # will change once vm is up
 
 def create_role(un):
+    es.indices.create(index=f"{un}-logs", ignore=400)
     role_body = {
         "indices": [
             {
@@ -75,19 +76,26 @@ def create_role(un):
                 "privileges": ["read","write", "view_index_metadata"],
             } 
         ],
-        "applications": [
-            {
-                "application": "kibana-.kibana",
-                "privileges": ["read"], # only give read access
-                "resources": ["*"]  # Can be restricted to specific space (e.g.,)
-            }
-        ]
+        "applications" : [
+        {
+            "application" : "kibana-.kibana",
+            "privileges" : [
+            "feature_discover.read",
+            "feature_dashboard.read",
+            "feature_visualize.read"
+            ],
+            "resources" : [
+            f"space:{un}-space"
+            ]
+        }
+    ],
+    "run_as" : [ ],
     }
-    es.security.put_role(name=f"{un}_project_role", body=role_body)
-    print(f"Role created: {un}_project_role")
-              
-def create_index_pattern(index_name):
-    kibana_url = KIBANA_HOST+"/api/saved_objects/index-pattern"
+    es.security.put_role(name=f"{un}_role", body=role_body)
+    print(f"Role created: {un}_role")
+
+def create_index_pattern(index_name, space):
+    kibana_url = KIBANA_HOST+f"/s/{space}/api/saved_objects/index-pattern"
 
     # Index pattern data
     data = {
@@ -104,7 +112,7 @@ def create_index_pattern(index_name):
     }
 
     # Authentication (replace with your credentials)
-    auth = HTTPBasicAuth("elastic","shamal")
+    auth = HTTPBasicAuth('elastic','shamal')
 
     # Send the POST request
     response = requests.post(kibana_url, json=data, headers=headers, auth=auth)
@@ -112,18 +120,59 @@ def create_index_pattern(index_name):
     # Print the response
     if response.status_code == 200 or response.status_code == 201:
         print("Index pattern created successfully:", response.json())
+        response = response.json()
+        return response["id"]
     else:
         print(f"Failed to create index pattern. Status Code: {response.status_code}")
-        print(response.text)
+        print(response.text)  
 
+def create_user_space(un):
+    HEADERS = {
+            "kbn-xsrf": "true",
+            "Content-Type": "application/json"
+        }
+    AUTH = HTTPBasicAuth('elastic', 'shamal')
+    space_name = f"{un}-space"
+    space_body = { 
+            "id": space_name,
+            "name": space_name,
+            "description": f"Space for {space_name} user",
+    }
+    
+    response = requests.post(f"{KIBANA_HOST}/api/spaces/space", json=space_body, headers=HEADERS, auth=AUTH)
+    print(response.text)
+    if response.status_code == 200:
+        print(f"Space '{space_name}' created successfully.")
+        index_pattern = create_index_pattern(index_name = f"{un}-logs", space=space_name)
+        space_id = response.json()['id']
+
+        config_data = {
+            'attributes': {
+                'defaultIndex': index_pattern,
+                'defaultRoute': f"/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1y,to:now))&_a=(columns:!(ai_summary,event),filters:!(),index:'{index_pattern}',interval:auto,query:(language:kuery,query:''),sort:!())",
+            },
+        }
+        print(f'{KIBANA_HOST}/s/{un}-space/api/saved_objects/config/7.10.2')
+        response = requests.post(
+            f'{KIBANA_HOST}/s/{un}-space/api/saved_objects/config/7.10.2',
+            headers=HEADERS,
+            json=config_data,
+            auth=AUTH,
+        )
+        if response.status_code == 200:
+            print(f"Default index pattern for '{space_name}' set successfully.")
+        else:
+                print(f"Error setting default index pattern for '{space_name}': {response.status_code} : {response.text}")
+    else:
+        print(f"Error creating space '{space_name}': {response.status_code}")
 # Create a user and assign the restricted role
-def create_user(self,un,pw):
+def create_user(un,pw):
     user_body = {
         "password": pw,        # User password
-        "roles": [f"{un}_project_role"],    # Assign the restricted role
+        "roles": [f"{un}_role"],    # Assign the restricted role
         "full_name": un,
     }
-    self.es.security.put_user(username=un, body=user_body)
+    es.security.put_user(username=un, body=user_body)
     print(f"User created: {un}")
 
 # Secret key for JWT
@@ -158,7 +207,7 @@ def register():
     # Create a role for that user to only allow access to user-specific index and kibana discover page
     create_role(username)
     # Create index pattern to make the logs of user-index visible on discover page
-    create_index_pattern(index_name = f"{username}-logs")
+    create_user_space(username)
     # Create actual Elastic Search user with restricted privileges
     create_user(username,password)
     return jsonify({"message": "User registered successfully"}), 201
@@ -175,7 +224,7 @@ def login():
         return jsonify({"error": "Invalid username or password"}), 401
 
     user_data = user["_source"]
-    if not check_password_hash(user_data["password"], password):
+    if user_data["password"]!=password:
         return jsonify({"error": "Invalid username or password"}), 401
 
     token = jwt.encode({"username": username}, SECRET_KEY, algorithm="HS256").decode('utf-8')

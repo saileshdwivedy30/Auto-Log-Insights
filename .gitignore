@@ -3,7 +3,4 @@ logs/*
 !/logs/testlog.txt
 
 # Only keep kibana setup and yaml
-dashboard_service/templates
-dashboard_service/uploads
-dashboard_service/dashboard-server.py
-dashboard_service/elasticClient.py
+dashboard_service-old/
