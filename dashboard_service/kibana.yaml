@@ -1,0 +1,13 @@
+server.name: kibana
+server.host: "0.0.0.0"
+elasticsearch.ssl.verificationMode: none
+elasticsearch.hosts: ["https://34.57.62.89:9200"]
+monitoring.ui.container.elasticsearch.enabled: true
+
+elasticsearch.username: "kibana_system"
+elasticsearch.password: "shamal"
+xpack.security.enabled: true
+
+csp.strict: false
+xpack.ccr.enabled: false
+xpack.watcher.enabled: false
