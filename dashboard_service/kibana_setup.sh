@@ -3,13 +3,7 @@ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee 
 
 sudo apt update
 sudo apt install kibana=7.10.2
-# no auto-upgrade
+
+# to avoid auto-upgrade
 sudo apt-mark hold kibana
 
-# manual step
-# sudo nano /etc/kibana/kibana.yml (add your own content)
-
-sudo systemctl start kibana
-sudo systemctl enable kibana
-
-# add firewall rules
