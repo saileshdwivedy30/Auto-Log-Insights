@@ -37,6 +37,11 @@ This helps in creating trends and report for teams to make the dev process more 
 1. [System Description](#system-description)
 2. [Installation](#installation-steps)
     - [Dashboard Service](#dashboard)
+    - [Register](#Register)
+    - [Login](#Login)
+    - [Upload](#Upload)
+    - [Worker](#Worker-job)
+    - [AI Service](#ai-service)
 
 
 ## System Description
