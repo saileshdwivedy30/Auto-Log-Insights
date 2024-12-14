@@ -26,10 +26,10 @@ This helps in creating trends and report for teams to make the dev process more 
 
 ## 📂 Repository Structure
 ```
-├── api/               # Flask RESTful API implementation
-├── workers/           # Redis worker scripts for asynchronous job processing
+├── flask_service/               # Flask RESTful API implementation
+├── workers_service/           # Redis worker scripts for asynchronous job processing
 ├── ai_service/        # Integration with LLaMA 3 AI model
-├── dashboard/         # Kibana dashboard configuration
+├── dashboard_service/         # Kibana dashboard configuration
 ├── requirements.txt   # Python dependencies
 └── README.md          # This documentation
 ```
@@ -44,8 +44,6 @@ This helps in creating trends and report for teams to make the dev process more 
     - [AI Service](#ai-service)
     - [Dashboard Service](#dashboard-service)
 2. [Installation](#installation-steps)
-    - [Dashboard VM](#dashboard-vm)
-
 
 
 ## System Description
@@ -84,36 +82,17 @@ Implements the /register, /login and /upload REST endpoints.
 The dashboard is a kibana service, configured specially to work with our Elasticsearch service. (IP - 34.28.235.62:5601)
 
 ## Installation steps
-You require the following softwares:
-- Kibana version: 7.10.2 in tune with the Elasticsearch version.
+Please see each individual folder
 
-### Dashboard VM
-Follow these steps to set up Kibana. 
-1. Create a google cloud VM node with following settings:
-<b>Name</b>: dashboard-vm
-<b>Type</b>: e2-medium <b>Boot disk</b>: Ubuntu 20.04 LTS. <b>Network Tag</b>: “allow-kibana”
- 
-2. Once created, SSH into the machine, and run the [setup-script](dashboard_service/kibana_setup.sh) to install Kibana on the VM.
-3. Modify the file "/etc/kibana/kibana.yml" as given in [kibana.yml](dashboard_service/kibana.yaml). Add the missing fields: ES IP address and built-in user password.
-4. Run the following to start and enable kibana service
+- [Flask Service](/flask_service/README.md)
+- [Elasticsearch Service](/elasticsearch-service/README.md)
+- [Logstash](/logstash_config/README.md)
+- [AI Service](/ai_service/ai_service_v1.py)
+- [Dashboard VM](/dashboard_service/)
 
-```
-sudo systemctl start kibana
-sudo systemctl enable kibana
-```
-5. Allow external access to your Dashboard service (kibana runs on port 5601 by default) by setting up a firewall rule:
-```
-gcloud compute firewall-rules create allow-kibana \
-    --direction=INGRESS \
-    --priority=1000 \
-    --network=default \
-    --action=ALLOW \
-    --rules=tcp:5601 \
-    --source-ranges=0.0.0.0/0 \
-    --target-tags=allow-kibana
-```
+
 
 🤝 Contributors
 - [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - Sailesh Dwivedy
-- Ghritachi Mahajani
+- [Ghritachi Mahajani](https://www.linkedin.com/in/ghritachi-mahajani/)
