@@ -1,31 +1,48 @@
 from flask import Flask, request, jsonify
-from transformers import pipeline
+import os
+from groq import Groq
 
 app = Flask(__name__)
-summarizer = pipeline("summarization", model="t5-small")
+
+# Initialize the Groq client
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 @app.route('/summarize', methods=['POST'])
-def summarize():
+def ai_analysis():
     try:
         data = request.json  # Input payload
-        #log_texts = data.get("logs")  # Extract the 'log' field from the payload
-        log_texts = data.get("logs", {}).get("log", "")  # Look for 'logs' and extract 'log'
+
+        # Attempt to extract 'log' field from the incoming JSON
+        log_texts = None
+        if isinstance(data, dict) and "logs" in data:
+            # If 'logs' is a dictionary, extract its 'log' field
+            if isinstance(data["logs"], dict):
+                log_texts = data["logs"].get("log", "")
+            # If 'logs' is already a string, use it directly
+            elif isinstance(data["logs"], str):
+                log_texts = data["logs"]
 
         if not log_texts:
             return jsonify({"error": "Missing 'log' in the input payload"}), 400
 
-        # Ensure log_texts is a string or list of strings
-        if isinstance(log_texts, dict):
-            log_texts = log_texts.get("logs", "")
+        # Use Groq API to perform AI analysis
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"Give your analysis on the following log and suggest how to fix, in 3 lines: {log_texts}",
+                }
+            ],
+            model="llama3-8b-8192",
+        )
 
-        if not isinstance(log_texts, (str, list)):
-            return jsonify({"error": "'log' should be a string or a list of strings"}), 400
+        # Extract the AI analysis response
+        ai_analysis_result = chat_completion.choices[0].message.content
 
-        # Generate the summary
-        summary = summarizer(log_texts, max_length=100, min_length=25, do_sample=False)
-        return jsonify({"summary": summary[0]["summary_text"]})
+        return jsonify({"summary": ai_analysis_result})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=6000)
