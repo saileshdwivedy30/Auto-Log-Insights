@@ -3,8 +3,8 @@ import requests
 import sys
 import json
 import getpass
-import termios  # For raw input handling
-import tty      # For raw input handling
+import termios
+import tty
 
 TOKEN_FILE = "/Users/saileshdwivedy/Downloads/jwt_token.txt"
 BASE_URL = "http://34.42.117.89:5000"
