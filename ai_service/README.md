@@ -31,6 +31,6 @@ The summarization service:
    sudo apt update
    sudo apt install python3 python3-pip -y
    pip3 install flask torch
-4. Run the service:
+4. Create and run the service:
    ```bash
     python3 ai_service_v1.py
