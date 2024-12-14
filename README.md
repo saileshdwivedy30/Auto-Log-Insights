@@ -35,13 +35,15 @@ This helps in creating trends and report for teams to make the dev process more 
 ## Contents
 
 1. [System Description](#system-description)
-2. [Installation](#installation-steps)
-    - [Dashboard Service](#dashboard)
     - [Register](#Register)
     - [Login](#Login)
     - [Upload](#Upload)
     - [Worker](#Worker-job)
     - [AI Service](#ai-service)
+    - [Dashboard Service](#dashboard-service)
+2. [Installation](#installation-steps)
+    - [Dashboard VM](#dashboard-vm)
+
 
 
 ## System Description
@@ -83,6 +85,7 @@ The dashboard is a kibana service, configured specially to work with our Elastic
 You require the following softwares:
 - Kibana version: 7.10.2 in tune with the Elasticsearch version.
 
+### Dashboard VM
 Follow these steps to set up Kibana. 
 1. Create a google cloud VM node with following settings:
 <b>Name</b>: dashboard-vm
