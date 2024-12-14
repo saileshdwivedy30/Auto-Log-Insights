@@ -24,6 +24,8 @@ This helps in creating trends and report for teams to make the dev process more 
  python3 local_client.py
 ```
 
+4. Deployment setup: Please take a look at this to learn [step-by-step guide](https://docs.google.com/document/d/1ywGi7h7ukjh3HJHiGiw5DCmhydxCjDbr1fN6gwZBR9c/edit?usp=sharing)
+
 ## 📂 Repository Structure
 ```
 ├── flask_service/               # Flask RESTful API implementation
