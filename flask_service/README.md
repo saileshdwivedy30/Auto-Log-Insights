@@ -4,7 +4,7 @@
 1. **Create a VM on GCP**:
    - **Machine Type**: `e2-small` (or higher if needed).
    - **Boot Disk**: Ubuntu 20.04 LTS as the operating system.
-   - Expose the Service Externally: Create a firewall rule in GCP to allow traffic on port 6000.
+   - Expose the Service Externally: Create a firewall rule in GCP to allow traffic on port 5000.
 
 
 3. **Update the System**:
