@@ -8,6 +8,30 @@ This project aims to assist users to analyze the logs and common errors made dur
 
 This helps in creating trends and report for teams to make the dev process more efficient.
 
+## 🧑‍💻 How to Set Up and Run
+1. Clone the Repository
+```
+    git clone https://github.com/cu-csci-4253-datacenter-fall-2024/finalproject-final-project-team-15.git
+    cd finalproject-final-project-team-15
+```
+2. Install Dependencies:
+    Ensure you have Python 3.8+ installed.
+
+3.  Run the client.py from command-line:
+```
+ python3 local_client.py
+```
+
+## 📂 Repository Structure
+```
+├── api/               # Flask RESTful API implementation
+├── workers/           # Redis worker scripts for asynchronous job processing
+├── ai_service/        # Integration with LLaMA 3 AI model
+├── dashboard/         # Kibana dashboard configuration
+├── requirements.txt   # Python dependencies
+└── README.md          # This documentation
+```
+
 ## Contents
 
 1. [System Description](#system-description)
@@ -28,7 +52,24 @@ Implements the /register, /login and /upload REST endpoints.
 - Creates an <b>index pattern</b> in that space (required to see data in Kibana features).
 
 #### Login
+- User needs to login to receive a JWT token which can be used for future upload requests. 
+- User can now upload logs and receive insight for those.
 
+#### Upload
+- Logs are uploaded via the “/upload” endpoint.
+- The log file is stored in S3 with a unique key (<username>/<log_id>.log).
+- Logs uploaded are sent to Redis message queue using the unique ID, allowing load balancing and async processing of jobs.
+
+#### Worker job:
+- Workers service listens to jobs from the queue 
+- Then it fetches associated files from S3. 
+- This is sent to Logstash that parses them, and stores structured parsed data in Elasticsearch.
+- The AI Service gets the parsed logs and sends the relevant parts to the AI service to generate insights.
+
+#### AI Service:
+- AI service consists of an open-source Llama3-8b model.
+- It is prompted to give an answer in the form “Analysis: <>, Fixes: <>”.
+- The AI Insight is added back to the corresponding document in Elasticsearch.
 
 ## Installation steps
 You require the following softwares:
@@ -58,6 +99,11 @@ gcloud compute firewall-rules create allow-kibana \
     --source-ranges=0.0.0.0/0 \
     --target-tags=allow-kibana
 ```
+
+🤝 Contributors
+- Shamal Shaikh
+- Sailesh Dwivedy
+- Ghritachi Mahajani
 
 
 Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
