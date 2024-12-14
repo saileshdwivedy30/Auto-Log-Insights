@@ -85,15 +85,16 @@ The dashboard is a kibana service, configured specially to work with our Elastic
 ## Installation steps
 Please see each individual folder
 
-- [Flask Service](/flask_service/README.md)
-- [Elasticsearch Service](/elasticsearch-service/README.md)
-- [Logstash](/logstash_config/README.md)
-- [AI Service](/ai_service/README.md)
+- [Flask Service VM](/flask_service/README.md)
+- [Elasticsearch Service VM](/elasticsearch-service/README.md)
+- [Logstash VM](/logstash_config/README.md)
+- [AI Service VM](/ai_service/README.md)
 - [Dashboard VM](/dashboard_service/)
+- [Worker service VM](/worker_service/README.md)
 
 
 
 🤝 Contributors
 - [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
-- Sailesh Dwivedy
+- [Sailesh Dwivedy](https://www.linkedin.com/in/saileshdwivedy/)
 - [Ghritachi Mahajani](https://www.linkedin.com/in/ghritachi-mahajani/)
