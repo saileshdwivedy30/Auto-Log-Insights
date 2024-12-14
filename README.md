@@ -49,8 +49,6 @@ This helps in creating trends and report for teams to make the dev process more 
 
 ## System Description
 ![Architecture](/architecture.jpg)
-### Flask REST Service
-Implements the /register, /login and /upload REST endpoints.
 
 #### Register
 - Creates user credentials in the Elasticsearch system.
