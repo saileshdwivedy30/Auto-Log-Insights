@@ -2,6 +2,8 @@
 
 Team 15 members: Shamal Shaikh, Sailesh Dwivedy, Ghritachi Mahajani
 
+Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
+
 ## Overview
 
 This project aims to assist users to analyze the logs and common errors made during development. It is built on top of the ELK (Elasticsearch-Logstash-Kibana) stack, by adding AI-generated insights on the logs.
@@ -115,9 +117,3 @@ gcloud compute firewall-rules create allow-kibana \
 - [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - Sailesh Dwivedy
 - Ghritachi Mahajani
-
-
-Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
-
-
-
