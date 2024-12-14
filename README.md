@@ -1,5 +1,7 @@
 # Auto Log Insights
 
+Shamal Shaikh, Sailesh Dwivedy, Ghritachi Mahajani (Group 15)
+
 ## Overview
 
 This project aims to assist users to analyze the logs and common errors made during development. It is built on top of the ELK (Elasticsearch-Logstash-Kibana) stack, by adding AI-generated insights on the logs.
