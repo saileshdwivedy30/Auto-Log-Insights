@@ -1,6 +1,6 @@
 # Auto Log Insights
 
-Shamal Shaikh, Sailesh Dwivedy, Ghritachi Mahajani (Group 15)
+Team 15 membders: Shamal Shaikh, Sailesh Dwivedy, Ghritachi Mahajani
 
 ## Overview
 
