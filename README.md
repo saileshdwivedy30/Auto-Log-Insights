@@ -67,13 +67,13 @@ Implements the /register, /login and /upload REST endpoints.
 - The log file is stored in S3 with a unique key (<username>/<log_id>.log).
 - Logs uploaded are sent to Redis message queue using the unique ID, allowing load balancing and async processing of jobs.
 
-#### Worker job:
+### Worker job:
 - Workers service listens to jobs from the queue 
 - Then it fetches associated files from S3. 
 - This is sent to Logstash that parses them, and stores structured parsed data in Elasticsearch.
 - The AI Service gets the parsed logs and sends the relevant parts to the AI service to generate insights.
 
-#### AI Service:
+### AI Service:
 - AI service consists of an open-source Llama3-8b model which is being used through Groq inference API.
 - It is prompted to give an answer in the form “Analysis: <>, Fixes: <>”.
 - The AI Insight is added back to the corresponding document in Elasticsearch.
