@@ -58,5 +58,7 @@ gcloud compute firewall-rules create allow-kibana \
 ```
 
 
+Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
+
 
 
