@@ -72,7 +72,7 @@ Implements the /register, /login and /upload REST endpoints.
 - The AI Service gets the parsed logs and sends the relevant parts to the AI service to generate insights.
 
 #### AI Service:
-- AI service consists of an open-source Llama3-8b model which is being used through Grok inference API.
+- AI service consists of an open-source Llama3-8b model which is being used through Groq inference API.
 - It is prompted to give an answer in the form “Analysis: <>, Fixes: <>”.
 - The AI Insight is added back to the corresponding document in Elasticsearch.
 
