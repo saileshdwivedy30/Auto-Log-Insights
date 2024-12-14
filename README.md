@@ -83,7 +83,7 @@ Implements the /register, /login and /upload REST endpoints.
 The dashboard is a kibana service, configured specially to work with our Elasticsearch service. (IP - 34.28.235.62:5601)
 
 ## Installation steps
-Please see each individual folder
+Please see each individual folder:
 
 - [Flask Service VM](/flask_service/README.md)
 - [Elasticsearch Service VM](/elasticsearch-service/README.md)
@@ -92,7 +92,7 @@ Please see each individual folder
 - [Dashboard VM](/dashboard_service/)
 - [Worker service VM](/worker_service/README.md)
 
-
+Each service is deployed on a VM.
 
 🤝 Contributors
 - [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
