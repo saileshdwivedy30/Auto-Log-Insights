@@ -87,7 +87,7 @@ Please see each individual folder
 - [Flask Service](/flask_service/README.md)
 - [Elasticsearch Service](/elasticsearch-service/README.md)
 - [Logstash](/logstash_config/README.md)
-- [AI Service](/ai_service/ai_service_v1.py)
+- [AI Service](/ai_service/README.md)
 - [Dashboard VM](/dashboard_service/)
 
 
