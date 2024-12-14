@@ -112,7 +112,7 @@ gcloud compute firewall-rules create allow-kibana \
 ```
 
 🤝 Contributors
-- Shamal Shaikh
+- [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - Sailesh Dwivedy
 - Ghritachi Mahajani
 
