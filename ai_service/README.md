@@ -1,4 +1,4 @@
-# AI Analsys Service
+# AI Analsys Service deployment
 
 This repository contains the implementation of a AI analysis service deployed on Google Cloud Platform (GCP). The service uses a Llama3 (8b) model through Grok inference API
 
@@ -34,6 +34,3 @@ The summarization service:
 4. Run the service:
    ```bash
     python3 ai_service_v1.py
-
-
-   
