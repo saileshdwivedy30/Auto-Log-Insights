@@ -8,7 +8,7 @@ This project aims to assist users to analyze the logs and common errors made dur
 
 This helps in creating trends and report for teams to make the dev process more efficient.
 
-## 🧑‍💻 How to Set Up and Run
+## 🧑‍💻 Getting started
 1. Clone the Repository
 ```
     git clone https://github.com/cu-csci-4253-datacenter-fall-2024/finalproject-final-project-team-15.git
