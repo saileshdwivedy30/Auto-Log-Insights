@@ -76,11 +76,14 @@ Implements the /register, /login and /upload REST endpoints.
 - It is prompted to give an answer in the form “Analysis: <>, Fixes: <>”.
 - The AI Insight is added back to the corresponding document in Elasticsearch.
 
+### Dashboard Service
+The dashboard is a kibana service, configured specially to work with our Elasticsearch service. (IP - 34.28.235.62:5601)
+
 ## Installation steps
 You require the following softwares:
 - Kibana version: 7.10.2 in tune with the Elasticsearch version.
-### Dashboard Service
-The dashboard is a kibana service, configured specially to work with our Elasticsearch service. Follow these steps to set up Kibana. 
+
+Follow these steps to set up Kibana. 
 1. Create a google cloud VM node with following settings:
 <b>Name</b>: dashboard-vm
 <b>Type</b>: e2-medium <b>Boot disk</b>: Ubuntu 20.04 LTS. <b>Network Tag</b>: “allow-kibana”
