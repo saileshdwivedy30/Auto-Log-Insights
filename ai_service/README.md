@@ -6,7 +6,7 @@ This repository contains the implementation of a AI analysis service deployed on
 
 ## **Overview**
 
-The summarization service:
+The AI anslysis service:
 - Processes input logs via an HTTP POST request.
 - Generates a concise analysis using a Llama3 (8b) model through Groq inference API.
 - Exposes the service running on a dedicated GCP VM.
