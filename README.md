@@ -24,15 +24,14 @@ This helps in creating trends and report for teams to make the dev process more 
  python3 local_client.py
 ```
 
-4. Deployment setup: Please take a look at this to learn [step-by-step guide](https://docs.google.com/document/d/1ywGi7h7ukjh3HJHiGiw5DCmhydxCjDbr1fN6gwZBR9c/edit?usp=sharing)
 
 ## 📂 Repository Structure
 ```
-├── flask_service/               # Flask RESTful API implementation
-├── workers_service/           # Redis worker scripts for asynchronous job processing
+├── flask_service/     # Flask RESTful API implementation
+├── worker_service/   # Redis worker scripts for asynchronous job processing
 ├── ai_service/        # Integration with LLaMA 3 AI model
-├── dashboard_service/         # Kibana dashboard configuration
-├── requirements.txt   # Python dependencies
+├── dashboard_service/ # Kibana dashboard configuration
+├── local_client.py    # Run this file for user
 └── README.md          # This documentation
 ```
 
