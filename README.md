@@ -17,7 +17,7 @@ This helps in creating trends and report for teams to make the dev process more 
 2. Install Dependencies:
     Ensure you have Python 3.8+ installed.
 
-3.  Run the client.py from command-line:
+3.  Run the client.py from command-line (Change the JWT token and log file path variables with your file path):
 ```
  python3 local_client.py
 ```
@@ -112,7 +112,7 @@ gcloud compute firewall-rules create allow-kibana \
 ```
 
 🤝 Contributors
-- Shamal Shaikh
+- [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - Sailesh Dwivedy
 - Ghritachi Mahajani
 
