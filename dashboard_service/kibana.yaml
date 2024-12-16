@@ -1,0 +1,13 @@
+server.name: kibana
+server.host: "0.0.0.0"
+elasticsearch.ssl.verificationMode: none
+elasticsearch.hosts: ["your-elasticsearch-vm-external-ip"]
+monitoring.ui.container.elasticsearch.enabled: true
+
+elasticsearch.username: "elastic"
+elasticsearch.password: "your-builtin-user-password"
+xpack.security.enabled: true
+
+csp.strict: false
+xpack.ccr.enabled: false
+xpack.watcher.enabled: false

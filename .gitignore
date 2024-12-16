@@ -1,3 +1,6 @@
-api_gateway/uploads
+*.pyc
 logs/*
 !/logs/testlog.txt
+
+# Only keep kibana setup and yaml
+dashboard_service-old/
