@@ -1,6 +1,6 @@
 # Auto Log Insights
 
-Team 15 members: Shamal Shaikh, Sailesh Dwivedy, Ghritachi Mahajani
+Team 15 members: Sailesh Dwivedy, Shamal Shaikh, Ghritachi Mahajani
 
 Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
 
@@ -93,6 +93,6 @@ Please see each individual folder:
 Each service is deployed on a VM.
 
 🤝 Contributors
-- [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - [Sailesh Dwivedy](https://www.linkedin.com/in/saileshdwivedy/)
+- [Shamal Shaikh](https://www.linkedin.com/in/shamal-shaikh/)
 - [Ghritachi Mahajani](https://www.linkedin.com/in/ghritachi-mahajani/)
