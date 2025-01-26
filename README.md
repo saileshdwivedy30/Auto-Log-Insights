@@ -1,6 +1,6 @@
 # Auto Log Insights
 
-Team 15 members: Sailesh Dwivedy, Shamal Shaikh, Ghritachi Mahajani
+Team members: Sailesh Dwivedy, Shamal Shaikh, Ghritachi Mahajani
 
 Demo video link: https://www.youtube.com/watch?v=aOD9OG1qHYc
 
